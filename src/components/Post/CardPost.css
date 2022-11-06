@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@900&display=swap');
+
+.main{
+	max-width: 80%;
+    margin: 0 auto;
+    height: auto;
+    /* margin-right: 20%; */
+    border-bottom: 1px solid gray;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+.img{
+    max-width: 100%;
+    height: auto;
+}
+.post-img{
+    width: 120px;
+    height: auto;
+    /* min-height: 120px;
+    max-height: 120px; */
+    float: left;
+    margin: 3px;
+    padding: 3px;
+
+}
+
+.img-user{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: gray;
+}
+
+.name-user{
+    margin-left: 10px;
+    font-family: medium-content-sans-serif-font;
+    font-size: 15px;
+    color: black;
+}
+
+.user-detail{
+    display: flex;
+    align-items: center;
+}
+
+.footer{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.hashtag {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin-right: 5px;
+    border-radius: 25px;
+    border: 1px solid transparent;
+    background-color: rgba(229, 229, 229, 0.77);
+}
+
+.hashtagButton{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.post-title{
+    font-family: helvetica neue;
+    font-size: 22px;
+    color: black;
+    text-transform: uppercase;
+    font-family: 'Martel Sans', sans-serif;
+    font-weight: 900;
+    
+}
+
+.post-body{
+    color: black;
+    margin-bottom: 1rem;
+}
+
+
+.content{
+    display: block;
+    padding-left: 1rem;
+}
+
+.content .img{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.post-content{
+    display: flex;
+}
+
+.created-at{
+    padding-left: 1rem;
+}
+
+@media screen and (max-width: 675px) {
+    .post-body{
+        display: none;
+    }
+
+    .post-img{
+        display: none;
+    }
+    
+    .created-at{
+        display: none;
+    }
+
+    .user-detail{
+        padding-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .user-detail{
+        padding-left: 1rem;
+    }
+}
+
