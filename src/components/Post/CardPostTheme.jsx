@@ -30,7 +30,7 @@ const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,cre
                     </ReactReadMoreReadLess>
                 </p>
                     <div className="sub-link">
-                        <Link to={{ pathname:`/Timeline/${sub_name}/${id}`}} onClick={() => localStorage.setItem('post_id', id)}>
+                        <Link to={{ pathname:`/Timeline/${sub_name}/Post/${id}`}} onClick={() => localStorage.setItem('post_id', id)}>
                             Continue reading
                         </Link>
                     </div>

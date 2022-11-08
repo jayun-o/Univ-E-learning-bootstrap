@@ -120,9 +120,9 @@ const ShowBlog = () => {
           <br></br>
 
           <div className='blog-author-detail'>
-            <div className='author-user-img'>
+            {/* <div className='author-user-img'>
               <img src='' alt="" />
-            </div>
+            </div> */}
           <div className='author-user-name'>{posts.nameCreate}</div>
           </div>
 

@@ -9,6 +9,7 @@ import CreatePost from "./components/Post/CreatePost"
 import TimelineBlog from './components/Timeline/TimelineBlogHead';
 import TabCreate from './components/Blog/TabCreate';
 import ShowBlog from './components/Blog/ShowBlog';
+import ShowCourse from './components/Course/ShowCourse';
 
 function App() {
 
@@ -21,8 +22,9 @@ function App() {
       {/* <Route path="/create" element={<CreatePost/>} /> */}
       <Route path="/create" element={<TabCreate/>} />
       <Route exact path="/Timeline/:sub_name" element={<TimelineBlog/>} />
-      <Route path="/Timeline/:sub_name/:id" element={<ShowBlog/>}/>
+      <Route path="/Timeline/:sub_name/Post/:id" element={<ShowBlog/>}/>
       {/* <Route path="/createblogtest" element={<CreateBlogTest/>} /> */}
+      <Route path="/course" element={<ShowCourse/>}/>
     </Routes>
   </Router>
   

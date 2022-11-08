@@ -25,6 +25,7 @@ const CreateBlog = () => {
   //SELECT HASHTAG
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [validated, setValidated] = useState(false);
 
     // CONNECT API SUBCATEGORY
     useEffect(() => {
@@ -113,13 +114,17 @@ const CreateBlog = () => {
 
   
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form  onSubmit={handleSubmit}>
       <div className="create-blog">
       <Form.Label><h2>Created by {name}</h2></Form.Label><br/>
       <Form.Label>{date}{' '}{time}</Form.Label><hr/>
         <Form.Group className="mb-3" controlId="formBasicTitle">
           <Form.Label style={{color:'#37a6fb'}}>What's your blog title?</Form.Label>
-          <Form.Control required type="text" value={title} placeholder="Enter title" onChange={(event)=>{
+          <Form.Control
+          type="text" 
+          value={title} 
+          placeholder="Enter title" 
+          onChange={(event)=>{
             setTitle(event.target.value)
           }}/>
       </Form.Group>
