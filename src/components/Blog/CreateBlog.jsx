@@ -65,7 +65,7 @@ const CreateBlog = () => {
 
     // CONNECT API CREATE
     const token = localStorage.getItem("token");
-    async function CreatePost(credentials) {
+    async function CreateBlog(credentials) {
       return fetch("https://univelear.herokuapp.com/api/posts/create", {
         method: "POST",
         headers: {
@@ -81,16 +81,18 @@ const CreateBlog = () => {
     // SET STATE FORM SUBMIT
     const classes = useState();
     const [body, setBody] = useState("");
-    const sub_id = 1;
+    const sub_id = selected.value;
+    // console.log();
+    
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const select_label = [];
-    selected.forEach((element) => {
+    Object.keys(selected).forEach((element) => {
       select_label.push(element.label);
     });
-    const response = await CreatePost({
+    const response = await CreateBlog({
       title,
       body,
       sub_id,
@@ -136,6 +138,7 @@ const CreateBlog = () => {
           value={selected}
           required
           onChange={setSelected}
+          
         />
         <br/>
       <Form.Label style={{color:'#37a6fb'}}>Select your cover blog!</Form.Label>
@@ -147,6 +150,7 @@ const CreateBlog = () => {
           accept=".jpeg, .png, .jpg, .gif" //set type
           required
           onChange={(e) => handleFileUpload(e).setImage}
+          
         />
       </div>
       <Form.Label style={{color:'#37a6fb'}}>What would you like to share?</Form.Label>

@@ -8,16 +8,16 @@ import Records from './records.json';
 
 
 const ShowCourse = () => {
-  const [video, setVideo] = useState('https://youtu.be/vv3um0BlygY');
   const [courses,setCourses] = useState([]);
   const course_id = localStorage.getItem('course_id');
-
-  // console.log(Records);
-
+  
+  const [video, setVideo] = useState('https://youtu.be/vv3um0BlygY');
   const change = (e) =>{
 
     setVideo('https://youtu.be/VnKNNOAhb4o')
+
   }
+  // console.log(Records);
 
   return (
     <main className="container">
@@ -81,7 +81,7 @@ const ShowCourse = () => {
   </main>
   )
 }
-export const Display = styled.div`
+export const container = styled.div`
 .video-player {
   position: relative;
 }
