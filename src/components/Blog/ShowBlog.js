@@ -31,7 +31,7 @@ const ShowBlog = () => {
     // console.log(arrayHashtag); 
 
     const countComment = (comments.all_comment || []).length;
-    console.log(countComment)
+    // console.log(countComment)
 
     ///// Sort commenst to show the newest comments on top ///////
     const list = (comments.all_comment || [])
@@ -209,9 +209,9 @@ const ShowBlog = () => {
 
                 <div className="flex-row user d-flex align-items-center">
                   <div className='user-detail'>
-                    <div className='user-img'>
+                    {/* <div className='user-img'>
                       <img src='' alt="" />
-                    </div>
+                    </div> */}
                     <span>
                       <small className="font-weight-bold text-primary" >{data.nameCreate}</small> 
                     </span>

@@ -1,9 +1,9 @@
 import React from 'react'
-import BasicExample from './Accordion/BasicExample'
 import NavbarScroll from './Navbar/NavbarScroll'
 import Banner from './Banner/Banner'
 import Category from './Category/Category'
-
+import Aboutus from './Aboutus/Aboutus'
+import Footer from './Footer/Footer'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -16,6 +16,8 @@ class LandingPage extends React.Component {
                 <NavbarScroll/>
                 <Banner/>
                 <Category/>
+                <Aboutus/>
+                <Footer/>
             </div>
       )
   }

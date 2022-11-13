@@ -52,7 +52,7 @@ class Category extends React.Component {
 
     return (
       
-      <div className="category">
+      <div className="category" id="category">
         <div className="header">
           <div clasName="header-blog" >Discover your interesting</div>
 

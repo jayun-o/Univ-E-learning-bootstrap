@@ -26,6 +26,8 @@
     "bootstrap": "^5.2.2",
     "daisyui": "^2.33.0",
     "dayjs": "^1.11.6",
+    "flowbite": "^1.5.3",
+    "flowbite-react": "^0.3.4",
     "html-react-parser": "^3.0.4",
     "lowlight": "^2.7.0",
     "react": "^18.2.0",
@@ -33,10 +35,13 @@
     "react-debounce-input": "^3.3.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
+    "react-loading-skeleton": "^3.1.0",
     "react-multi-select-component": "^4.3.4",
+    "react-player": "^2.11.0",
     "react-read-more-read-less": "^1.0.7",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-select": "^5.6.0",
     "react-textarea-autosize": "^8.3.4",
     "styled-components": "^5.3.6",
     "sweetalert": "^2.1.2",
@@ -65,5 +70,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
   }
 }

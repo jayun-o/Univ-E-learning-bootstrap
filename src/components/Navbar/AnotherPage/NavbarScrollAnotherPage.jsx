@@ -55,11 +55,11 @@ function NavbarScrollAnotherPage() {
   return (
     <>
       {['sm'].map((expand) => (
-        <Navbar className='bg-dark' expand="sm" fixed="top">
+        <Navbar className='bg-black' expand="sm" fixed="top">
           <Container fluid>
             <Navbar.Brand href="#" className="text-white">Univ E-learning</Navbar.Brand>
             <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas className="bg-dark"
+            <Navbar.Offcanvas className="bg-black"
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
@@ -71,9 +71,9 @@ function NavbarScrollAnotherPage() {
               </Offcanvas.Header>
               <Offcanvas.Body className='offcanvas-border-color-202020'>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link className="text-white" href="#action1">Home</Nav.Link>
-                  <Nav.Link className="text-white" href="#action1">Category</Nav.Link>
-                  <Nav.Link className="text-white" href="#action2">About us</Nav.Link>
+                  <Nav.Link className="text-white" href="/">Home</Nav.Link>
+                  <Nav.Link className="text-white" href="/">Category</Nav.Link>
+                  <Nav.Link className="text-white" href="/">About us</Nav.Link>
                 </Nav>
                 <Button className="me-2" variant="outline-light" onClick={() => setModalShowSignup(true)}>
                   Join us

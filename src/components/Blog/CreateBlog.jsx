@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react';
 import parser from "html-react-parser";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { MultiSelect } from "react-multi-select-component";
+import Select from 'react-select'
 import swal from "sweetalert";
-
-
 
 const CreateBlog = () => {
   //get name
@@ -25,7 +23,6 @@ const CreateBlog = () => {
   //SELECT HASHTAG
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
-  const [validated, setValidated] = useState(false);
 
     // CONNECT API SUBCATEGORY
     useEffect(() => {
@@ -110,10 +107,12 @@ const CreateBlog = () => {
     } else {
       swal("Failed", response.message, "error");
     }
+  
   };
 
   
   return (
+    
     <Form  onSubmit={handleSubmit}>
       <div className="create-blog">
       <Form.Label><h2>Created by {name}</h2></Form.Label><br/>
@@ -123,17 +122,19 @@ const CreateBlog = () => {
           <Form.Control
           type="text" 
           value={title} 
-          placeholder="Enter title" 
+          placeholder="Enter title"
+          required
           onChange={(event)=>{
             setTitle(event.target.value)
           }}/>
       </Form.Group>
       
       <Form.Label style={{color:'#37a6fb'}}>Select your hashtag!</Form.Label>
-        <MultiSelect
+        <Select
           defaultValue={selected}
           options={options}
           value={selected}
+          required
           onChange={setSelected}
         />
         <br/>
@@ -144,13 +145,23 @@ const CreateBlog = () => {
           label="Image"
           name="myFile"
           accept=".jpeg, .png, .jpg, .gif" //set type
+          required
           onChange={(e) => handleFileUpload(e).setImage}
         />
       </div>
       <Form.Label style={{color:'#37a6fb'}}>What would you like to share?</Form.Label>
       <Tiptap setBody={setBody} onChange={(e) => {setBody(body)}}/>
 
-      <Button variant="warning" type='submit' className='mb-3'>Create</Button>{' '}
+      <div className="text-end">
+        <Button 
+        variant="primary" 
+        type='submit' 
+        className='mb-3' 
+        style={{margin:'0.5rem', marginLeft:'1rem'}}>
+          Create
+        </Button>
+      </div>
+      
       {/* Preview Phase */}
       <div className="ProseMirror">
         <div className='preview' style={{padding:'50', margin:'50',fontSize:'30px'}}>Preview Phase</div>

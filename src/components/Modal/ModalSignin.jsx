@@ -68,7 +68,9 @@ export default function ModalSignin(props) {
         </Form.Text> 
         <br/><br/>*/}
         <ModalSignup show={modalShowSignup} onHide={() => setModalShowSignup(false)}/>
-        <Button variant="primary" type="submit">Submit</Button>
+        <div className="text-end">
+          <Button variant="primary" type="submit">Submit</Button>
+        </div>
       </Form>
       </Modal.Body>
     </Modal>

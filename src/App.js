@@ -1,6 +1,5 @@
 import React from 'react';
 import LandingPage from './components/LandingPage'
-import AnotherPage from './components/AnotherPage';
 import Category from './components/Category/Category';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
@@ -14,10 +13,9 @@ import ShowCourse from './components/Course/ShowCourse';
 function App() {
 
   return (
-    <Router>
+  <Router>
     <Routes>
       <Route exact path="/" element={<LandingPage/>} />
-      <Route path="/page" element={<AnotherPage/>}/>
       <Route path="/category" element={<Category/>}/>
       {/* <Route path="/create" element={<CreatePost/>} /> */}
       <Route path="/create" element={<TabCreate/>} />
