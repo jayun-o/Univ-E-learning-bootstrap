@@ -19,15 +19,12 @@ const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,cre
                 <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-primary">{sub_name}</strong>
                 <h3 className="mb-0">
-                    <ReactReadMoreReadLess
-                        charLimit={30}
-                        readMoreText={"readmore"}>
-                        {title}
-                    </ReactReadMoreReadLess></h3>
+                    {title}
+                </h3>
                 <div className="mb-1 text-muted" style={{textDecoration:"none"}}>{created_at} {" "} by {nameCreate}</div>
                 <p className="card-text mb-auto">
                     <ReactReadMoreReadLess
-                        charLimit={300}
+                        charLimit={200}
                         readMoreText={""}>
                         {delBodytag}
                     </ReactReadMoreReadLess>
@@ -39,11 +36,7 @@ const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,cre
                     </div>
                 </div>
                 <div className="col-auto d-none d-lg-block">
-                    <img style={{height:'200px',width:'200px'}} src={image} alt="" />
-                {/* <svg className="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <img src={image} alt="" />
-                </svg> */}
+                    <img style={{height:'215px',width:'200px'}} src={image} alt="" />
                 </div>
             </div>
             </div>
