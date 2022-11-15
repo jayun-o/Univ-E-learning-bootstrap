@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap'
 import styled from "styled-components";
 import ReactPlayer from 'react-player';
 import Records from './records.json';
-
+import Banner1  from '../Banner/univbanner1.png'
 
 const ShowCourse = () => {
   const [courses,setCourses] = useState([]);
@@ -29,12 +29,14 @@ const ShowCourse = () => {
         {
             Records.data.map((data,index)=>{
               return(
-              <div className="p-4 p-md-5 mb-4 rounded text-bg-dark">
+              <div className="p-4 mb-4 rounded p-md-5">
+                <div className='bg-image'style={{backGround:{Banner1}}}>
                 <div className="px-0">
                   <div className='datatitle' key={index}>
                     <h1 className="display-4 fst-italic">{data.title}</h1>
                     <p>{data.body}</p>
                     </div>
+                  </div>
                   </div>
                 </div>
               )

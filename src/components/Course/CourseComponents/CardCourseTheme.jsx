@@ -4,7 +4,7 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import styled from "styled-components";
 
 
-const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,created_at,updated_at})=> {
+const CardCourseTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,created_at,updated_at})=> {
     const { sub_name } = useParams(); //subcategory.info = id,subcategorys
   
     const arrayHashtag = typeof(hastag) === 'object' ? hastag : hastag.split(',')
@@ -13,16 +13,16 @@ const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,cre
 
     return (
         <div className='cardpost'>
-        <div className="row mb-2">
+        <div className="mb-2 row">
             <div className="col">
-            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div className="col p-4 d-flex flex-column position-static">
-                <strong className="d-inline-block mb-2 text-primary">{sub_name}</strong>
+            <div className="mb-4 overflow-hidden border rounded shadow-sm row g-0 flex-md-row h-md-250 position-relative">
+                <div className="p-4 col d-flex flex-column position-static">
+                <strong className="mb-2 d-inline-block text-primary">{sub_name}</strong>
                 <h3 className="mb-0">
                     {title}
                 </h3>
                 <div className="mb-1 text-muted" style={{textDecoration:"none"}}>{created_at} {" "} by {nameCreate}</div>
-                <p className="card-text mb-auto">
+                <p className="mb-auto card-text">
                     <ReactReadMoreReadLess
                         charLimit={200}
                         readMoreText={""}>
@@ -30,7 +30,7 @@ const CardPostTheme = ({id,title,body,sub_id,user_id,nameCreate,image,hastag,cre
                     </ReactReadMoreReadLess>
                 </p>
                     <div className="sub-link">
-                        <Link to={{ pathname:`/Timeline/${sub_name}/Post/${id}`}} onClick={() => localStorage.setItem('post_id', id)}>
+                        <Link to={{ pathname:`/Timeline/${sub_name}/Course/${id}`}} onClick={() => localStorage.setItem('course_id', id)}>
                             Continue reading
                         </Link>
                     </div>
@@ -52,4 +52,4 @@ export const cardpost = styled.div`
 
 `;
 
-export default CardPostTheme
+export default CardCourseTheme

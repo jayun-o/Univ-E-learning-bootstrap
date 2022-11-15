@@ -63,10 +63,10 @@ export default function ModalSignin(props) {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)} />
         </Form.Group>
-        {/* <Form.Text className="text-muted" onClick={() => setModalShowSignup(true)}>
-          I Don't Have an Account Yet?, Sign up
+        <Form.Text className="text-muted" closeButton>
+          I Don't Have an Account Yet?, Please Click Join us before
         </Form.Text> 
-        <br/><br/>*/}
+        <br/><br/>
         <ModalSignup show={modalShowSignup} onHide={() => setModalShowSignup(false)}/>
         <div className="text-end">
           <Button variant="primary" type="submit">Submit</Button>

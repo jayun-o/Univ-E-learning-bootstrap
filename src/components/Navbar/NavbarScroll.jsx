@@ -9,6 +9,8 @@ import ModalSignup from '../Modal/ModalSignup'
 import '../Navbar/NavbarScroll.css'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import CreateIcon from './icon/CreateIcon';
+import logo from './icon/logo.png'
 
 
 function NavbarScroll() {
@@ -56,7 +58,7 @@ function NavbarScroll() {
       {['sm'].map((expand) => (
         <Navbar expand="sm" fixed="top" style={{ transition: '1s ease',backgroundColor: navBackground ? 'black' : 'transparent'}}>
           <Container fluid>
-            <Navbar.Brand href="#" className="text-white">Univ E-learning</Navbar.Brand>
+            <Navbar.Brand href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
             <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas className="bg-dark"
               id={`offcanvasNavbar-expand-${expand}`}
@@ -70,9 +72,9 @@ function NavbarScroll() {
               </Offcanvas.Header>
               <Offcanvas.Body className='offcanvas-border-color-202020'>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link className="text-white" href="#action1">Home</Nav.Link>
-                  <Nav.Link className="text-white" href="#action1">Category</Nav.Link>
-                  <Nav.Link className="text-white" href="#action2">About us</Nav.Link>
+                  <Nav.Link className="text-white" href="#home">Home</Nav.Link>
+                  <Nav.Link className="text-white" href="#category">Category</Nav.Link>
+                  <Nav.Link className="text-white" href="#aboutus">About us</Nav.Link>
                 </Nav>
                 <Button className="me-2" variant="outline-light" onClick={() => setModalShowSignup(true)}>
                   Join us
@@ -99,7 +101,7 @@ function NavbarScroll() {
         {['sm'].map((expand) => (
           <Navbar expand="sm" fixed="top" style={{ transition: '1s ease',backgroundColor: navBackground ? 'black' : 'transparent'}}>
             <Container fluid>
-              <Navbar.Brand  href="#" className="text-white">Univ E-learning</Navbar.Brand>
+              <Navbar.Brand  href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
               <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
               <Navbar.Offcanvas className="bg-dark"
                 id={`offcanvasNavbar-expand-${expand}`}
@@ -113,9 +115,9 @@ function NavbarScroll() {
                 </Offcanvas.Header>
                 <Offcanvas.Body className='offcanvas-border-color-202020'>
                   <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <Nav.Link className="text-white" href="#action1">Home</Nav.Link>
-                    <Nav.Link className="text-white" href="#action1">Category</Nav.Link>
-                    <Nav.Link className="text-white" href="#action2">About us</Nav.Link>
+                    <Nav.Link className="text-white" href="#home">Home</Nav.Link>
+                    <Nav.Link className="text-white" href="#category">Category</Nav.Link>
+                    <Nav.Link className="text-white" href="#aboutus">About us</Nav.Link>
                     <DropdownButton
                       variant="outline-light"
                       title={userLogin}
@@ -125,7 +127,7 @@ function NavbarScroll() {
                     </DropdownButton>
                     <Nav.Link className="text-white" href="#action2" onClick={create}>
 
-                        Create
+                        <CreateIcon/>
 
                     </Nav.Link>
                   </Nav>

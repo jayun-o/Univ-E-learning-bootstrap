@@ -1,8 +1,9 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Course from './Course';
 import Search from './Search';
 import TimelineBlog from '../Timeline/TimelineBlog';
+import TimelineCourse from '../Timeline/TimelineCourse';
+
 
 function TabFilter() {
   return (
@@ -15,7 +16,7 @@ function TabFilter() {
         <TimelineBlog />
       </Tab>
       <Tab eventKey="Course" title="Course">
-        <Course />
+        <TimelineCourse />
       </Tab>
       <Tab eventKey="Search" title="Search">
         <Search />

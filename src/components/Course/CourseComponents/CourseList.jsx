@@ -1,16 +1,15 @@
-import Accordion from 'react-bootstrap/Accordion';
+// import Accordion from 'react-bootstrap/Accordion';
 
 const CourseList = ({videoid,videoname,videolink,videodescription}) => {
   console.log(videodescription);
   return (
-    <Accordion alwaysOpen>
-      <Accordion.Item eventKey={videoid}>
-        <Accordion.Header>บทที่ {videoid} : {videoname}</Accordion.Header>
-        <Accordion.Body>
-          {videodescription}
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+    <container>
+        <div>บทที่ {videoid} : {videoname}</div>
+        <div>{videodescription}</div>
+    </container>
+
+          
+
 
   );
 }

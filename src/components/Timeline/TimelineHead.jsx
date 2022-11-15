@@ -4,7 +4,7 @@ import NavbarScrollAnotherPage from '../Navbar/AnotherPage/NavbarScrollAnotherPa
 import Carousel from 'react-bootstrap/Carousel';
 
 
-function TimelineBlogHead() {
+function TimelineHead() {
     
   return (
     <main className="container">
@@ -56,4 +56,4 @@ function TimelineBlogHead() {
   )
 }
 
-export default TimelineBlogHead
+export default TimelineHead

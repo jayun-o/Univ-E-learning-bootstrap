@@ -34,6 +34,7 @@ export default function ModalSignup(props) {
     if (response.success) {
       swal("Success", response.message, "User register successfully.", {
         buttons: false,
+        icon: "success",
         timer: 2000
       }).then(value => {
         localStorage.setItem("token", response.data.token);

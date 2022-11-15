@@ -3,17 +3,18 @@ import './Aboutus.css'
 
 function Aboutus() {
   return (
-    <div className="relative bg-white overflow-hidden bg-black" id='section2'>
-  <div className="max-w-7xl mx-auto">
+  <div id="aboutus" target="aboutus">
+  <div className="relative overflow-hidden bg-black bg-white" id='section2'>
+  <div className="mx-auto max-w-7xl">
     <div className="relative z-10 pb-8 bg-black sm:pb-16 md:pb-20 lg:max-w-2xl ">
-      <svg className=" hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="bg-neutral-900" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <svg className="absolute inset-y-0 right-0 hidden w-48 h-full text-white transform translate-x-1/2 lg:block" fill="bg-neutral-900" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <polygon points="50,0 100,0 50,100 0,100 " />
       </svg>
       <div>
-    <div className="relative pt-2 px-4 sm:px-6 ">
-      <main className="mt-5 px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-10 lg:px-8 xl:mt-14">
+    <div className="relative px-4 pt-2 sm:px-6 ">
+      <main className="px-4 mt-5 sm:mt-12 sm:px-6 md:mt-16 lg:mt-10 lg:px-8 xl:mt-14">
         <div className="sm:text-center lg:text-left ">
-          <h1 className="text-4xl tracking-tight font-extrabold text-indigo-600 sm:text-5xl md:text-6xl animate-charcter">
+          <h1 className="text-4xl font-extrabold tracking-tight text-indigo-600 sm:text-5xl md:text-6xl animate-charcter">
             <h2 className="block xl:inline ">AboutUs</h2>
             
             
@@ -25,10 +26,10 @@ function Aboutus() {
 
           </p>
           
-          <h1 className="text-4xl tracking-tight font-extrabold text-indigo-600 sm:text-5xl md:text-6xl mt-5 animate-charcter ">
+          <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-indigo-600 sm:text-5xl md:text-6xl animate-charcter ">
             <span className="block xl:inline">Why Univ?</span>
           </h1>
-          <p className="mt-3 text-base text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 mt-6 text-left" >
+          <p className="mt-3 mt-6 text-base text-left text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" >
             
                 <p>
                   <span className="text-sky-200 ">Users can access:</span> it through any device.
@@ -60,8 +61,9 @@ function Aboutus() {
     </div>
   </div>
   <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-    <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt=""/>
+    <img className="object-cover w-full h-56 sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt=""/>
   </div>
+</div>
 </div>
 </div>
   )

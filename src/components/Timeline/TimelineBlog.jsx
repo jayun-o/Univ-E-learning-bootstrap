@@ -1,6 +1,6 @@
 import React from 'react'
 import '../Timeline/Timeline.css'
-import CardPostTheme from '../Post/CardPostTheme';
+import CardBlogTheme from '../Blog/CardBlogTheme';
 
 
 class TimelineBlog extends React.Component {
@@ -23,7 +23,6 @@ class TimelineBlog extends React.Component {
         },
         body: JSON.stringify({sub_id})
         }).then(data => data.json()).then(data => {this.setState({posts:data})});
-    
     }
 
     
@@ -35,7 +34,7 @@ class TimelineBlog extends React.Component {
             <div className="Post-card">
                 {posts.data&&posts.data.map((data)=>{
                     return {data},
-                    <CardPostTheme key={data.id} id={data.id} title={data.title} body={data.body} sub_id={data.sub_id} nameCreate={data.nameCreate} user_id={data.userID} image={data.image} hastag={data.hastag} created_at={data.created_at} updated_at={data.updated_at} />
+                    <CardBlogTheme key={data.id} id={data.id} title={data.title} body={data.body} sub_id={data.sub_id} nameCreate={data.nameCreate} user_id={data.userID} image={data.image} hastag={data.hastag} created_at={data.created_at} updated_at={data.updated_at} />
                     }
                 )}
             </div>
