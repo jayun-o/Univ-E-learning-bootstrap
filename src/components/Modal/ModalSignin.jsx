@@ -34,6 +34,7 @@ export default function ModalSignin(props) {
     if (response.success) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", response.data.name);
+      localStorage.setItem("userID", response.data.id);
       window.location.reload();
     } else {
       swal("Failed", response.message, "error").then(console.log(response));

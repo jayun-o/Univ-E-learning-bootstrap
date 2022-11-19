@@ -39,6 +39,7 @@ export default function ModalSignup(props) {
       }).then(value => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", response.data.name);
+        localStorage.setItem("userID", response.data.id);
         window.location.reload();
       });
     } else {
