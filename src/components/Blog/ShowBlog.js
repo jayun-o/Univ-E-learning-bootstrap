@@ -1,15 +1,24 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 import '../Blog/ShowBlog.css';
-import { useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import {DebounceInput} from 'react-debounce-input';
 import parse from 'html-react-parser'
 import NavbarScrollAnotherPage from '../Navbar/AnotherPage/NavbarScrollAnotherPage';
+import swal from "sweetalert2";
+// import styled from "styled-components";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+
+
+
+
 
 
 
@@ -23,20 +32,35 @@ const ShowBlog = () => {
     const token = localStorage.getItem('token');
     const [updateStat, setUpdateStat] = useState(false);
     const htmlString = (posts.body || '')
+    const { sub_name } = useParams();
+    // const [userLogin, setUserlogin] = useState();
+    // useEffect(() => {
+    //   {
+    //     const userString = localStorage.getItem("token");
+    //     setUserlogin(userString);
+    //   }
+    // } );
 
 
 
     const str = (posts.hastag || ',')
     const arrayHashtag = typeof str === 'object' ? str : str.split(',');
-    // console.log(arrayHashtag); 
+    // console.log(arrayHashtag); '
 
     const countComment = (comments.all_comment || []).length;
     // console.log(countComment)
 
     ///// Sort commenst to show the newest comments on top ///////
-    const list = (comments.all_comment || [])
-    list.sort((a, b) => (a.id > b.id) ? -1 : 1)
-    // console.log(list)
+    const listComments = (comments.all_comment || [])
+    // const list = (comments.all_comment || [])
+    listComments.sort((a, b) => (a.id > b.id) ? -1 : 1)
+
+    // const listAscending = (comments.all_comment || [])
+    // listAscending.sort((a, b) => (a.id < b.id) ? 1 : -1)
+    // console.log(list) sortedProducts.sort((a, b) => {
+
+
+
     
     const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
@@ -81,9 +105,10 @@ const ShowBlog = () => {
 
     },[updateStat])
 
-
+  
   const CreateComment = () => {
-
+    const userLogin = localStorage.getItem("token")
+    
     return fetch("https://univelear.herokuapp.com/api/comment/create", {
       method: "POST",
       headers: {
@@ -97,8 +122,22 @@ const ShowBlog = () => {
       .then(FetchComment())
       .then((data) => setUpdateStat(data.data))
       .then((data) => console.log(data))
-  }
-  // console.log(comments)
+      // .then(window.location.reload());
+       
+  };
+  
+  // const commentAlert = () => {
+  // if(!userLogin){
+  //   swal.fire({
+  //     text: 'Please sign in your account and try again',
+  //     icon: 'warning',
+  //     confirmButtonText: 'Yes',
+  //   })}
+  // }
+
+
+  var relativeTime = require('dayjs/plugin/relativeTime')
+  dayjs.extend(relativeTime)
 
 
     return (
@@ -108,10 +147,10 @@ const ShowBlog = () => {
             <NavbarScrollAnotherPage/>
           </div>
 
-        <div className='blog'>
-        
-        <div className='blog-wrap'>
 
+      
+        <div class='container-xl'>
+        
         {/* Post Content */}
           <header>
           <p className='blog-date'>Published {posts.created_at}</p>
@@ -120,23 +159,22 @@ const ShowBlog = () => {
           <br></br>
 
           <div className='blog-author-detail'>
-            {/* <div className='author-user-img'>
-              <img src='' alt="" />
-            </div> */}
           <div className='author-user-name'>{posts.nameCreate}</div>
           </div>
 
           <div className='blog-subCategory'>
             <p>
-              {arrayHashtag.map((idx) => {
+              {/* {arrayHashtag.map((idx) => {
               return <div key={idx.id} className='hastag-post'>#{idx}</div>
-            })}
+            })} */}
+            <div className='hastag-post'>#{sub_name}</div>
             </p>
             
           </div>
-
+         <div class="row  d-flex justify-content-center"> 
           <div className='post-img-blog'>
-            <img src={posts.image} alt='' />
+            <img src={posts.image} alt='cover img' />
+          </div>
           </div>
 
           <div className='blog-body'>
@@ -149,6 +187,7 @@ const ShowBlog = () => {
 
 
         {/* Comment Form */}
+          
           <div className="container-comment">
             <div className='comment-box'>
               <div className='comment-title'>
@@ -167,7 +206,7 @@ const ShowBlog = () => {
                 </Box>
                 
 
-                <DebounceInput 
+                <input
                 element="textarea"
                 className="form-control"
                 placeholder="  Leave a comment here"
@@ -175,7 +214,7 @@ const ShowBlog = () => {
                 onChange={(e) => setTextComment(e.target.value)}
                 />
 
-                <button   
+                <button 
                   type="submit"
                   className='submit-comment'
                   onClick={CreateComment}
@@ -193,70 +232,63 @@ const ShowBlog = () => {
         
 
         {/* Comment List */}
-
         
-        <div className='all-Comment-list'>
-          <div className='titile-comment'>
-            <h1> All Comments ({countComment})</h1>
-          </div>
+        <div class="container mt-5">
 
-          <div className='comment-section' >
-          
-          {list.map((data)=>{
-              return {data},
-            <div className="p-3 cardComment">
-              <div className="d-flex justify-content-between align-items-center">
+            <div class="row d-flex justify-content-center">
 
-                <div className="flex-row user d-flex align-items-center">
-                  <div className='user-detail'>
-                    {/* <div className='user-img'>
-                      <img src='' alt="" />
-                    </div> */}
-                    <span>
-                      <small className="font-weight-bold text-primary" >{data.nameCreate}</small> 
-                    </span>
-                    <span>
-                      <small className='comment-date font-weight-bold'>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</small>
+                <div class="col">
 
-                    </span>
-                  </div>
+                    <div class="headings d-flex justify-content-between align-items-center mb-3">
+                        <h6>All Comments({countComment})</h6>
+                        
+                    </div>
+                    
+                    {listComments.map((data)=>{
+                        return {data},
 
-                  <Box >
-                    <StyledRating
-                      className='rating-score'
-                      value={data.score}
-                      precision={0.5}
-                      // edit={false}
-                      disabled={true} 
-                      count={5}
-                      icon={<FavoriteIcon fontSize="inherit" />}
-                      emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-                    />
-                  </Box>
+                    <div class="card p-3 w-100">
+                      <div class="d-flex justify-content-between align-items-center">
 
-                  <span>
-                    <small className="font-weight-bold text-grey">{data.description}</small> 
-                  </span>
+                        <div class="user d-flex flex-row align-items-center">
+                          <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
+                          <span>
+                            <Box >
+                              <StyledRating
+                                className='rating-score'
+                                value={data.score}
+                                precision={0.5}
+                                // edit={false}
+                                disabled={true} 
+                                count={5}
+                                icon={<FavoriteIcon fontSize="inherit" />}
+                                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                              />
+                            </Box>
+                          </span>
+                      </div>
+                      <small>{dayjs(data.created_at).fromNow()}</small>
+
+                      </div>
+                      <span><small class="font-weight-bold">{data.description}</small></span>
+
+                    </div>
+                      }
+                    )}
+                
                 </div>
-      
               </div>
             </div>
-            }
-          )}
-          </div>
-        </div> 
-       
 
         {/* End Comment List */}
 
-      </div> {/* ///blog-wrap////  */}
+         {/* ///blog-wrap////  */}
     </div> {/* ///blog ////  */}
   </div>
       
 
     )
 }
-
 
 
 
