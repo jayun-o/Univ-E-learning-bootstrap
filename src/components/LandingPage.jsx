@@ -9,8 +9,11 @@ class LandingPage extends React.Component {
     constructor(props) {
       super(props);
     }
+    
 
   render(){
+    console.warn = () => {};
+    console.error = () => {};
     return (
             <div className="App">
                 <NavbarScroll/>
@@ -22,8 +25,5 @@ class LandingPage extends React.Component {
       )
   }
 }
-            
-
-      
 
 export default LandingPage

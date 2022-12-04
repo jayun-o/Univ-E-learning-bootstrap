@@ -3,8 +3,12 @@ import Tabs from 'react-bootstrap/Tabs';
 import CreateBlog from './CreateBlog';
 import CreateCourse from '../Course/CreateCourse';
 import {BiArrowBack} from 'react-icons/bi'
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import './TabCreate.css';
+
 function TabCreate() {
+  const navigate = useNavigate();
+  
   return (
     <div className='tabtab'>
       
@@ -14,11 +18,17 @@ function TabCreate() {
       className="mb-3"
    >
       <Tab eventKey="Blog" title="Blog">
-        <Link  to='/'><p style={{display:'flex',marginLeft:'1rem'}}> back to homepage </p></Link>
+          <div  onClick={()=>navigate(-1)} style={{display:'flex',marginLeft:'1rem'}}>
+            <div className='align-self-center'><BiArrowBack/></div>
+            <div className='back'>&nbsp;go back</div>
+          </div>
         <CreateBlog/>
       </Tab>
       <Tab eventKey="Course" title="Course">
-        <Link  to='/'><p style={{display:'flex',marginLeft:'1rem'}}> back to homepage </p></Link>
+          <div  onClick={()=>navigate(-1)} style={{display:'flex',marginLeft:'1rem'}}>
+            <div className='align-self-center'><BiArrowBack/></div>
+            <div className='back'>&nbsp;go back</div>
+          </div>
         <CreateCourse />
       </Tab>
     </Tabs>

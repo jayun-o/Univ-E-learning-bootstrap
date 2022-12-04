@@ -8,3 +8,7 @@
 .dropdowntitle{
     color: white;
 }
+
+.nav-item.dropdown a {
+    color: white !important;
+}

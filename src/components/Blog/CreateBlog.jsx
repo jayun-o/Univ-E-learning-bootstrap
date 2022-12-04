@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Select from 'react-select'
 import swal from "sweetalert";
+import Swal from "sweetalert2";
+
 
 const CreateBlog = () => {
   //get name
@@ -107,7 +109,11 @@ const CreateBlog = () => {
         timer: 2000,
       });
     } else {
-      swal("Failed", response.message, "error");
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed...',
+        text: 'Please provide complete information',
+      })
     }
   
   };
@@ -138,7 +144,6 @@ const CreateBlog = () => {
           value={selected}
           required
           onChange={setSelected}
-          
         />
         <br/>
       <Form.Label style={{color:'#37a6fb'}}>Select your cover blog!</Form.Label>

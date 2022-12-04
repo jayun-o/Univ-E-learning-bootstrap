@@ -11,30 +11,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import CreateIcon from '../icon/CreateIcon';
 import logo from '../icon/logo.png';
-import { Padding } from '@mui/icons-material';
-
+import Swal from 'sweetalert2'
 
 
 function NavbarScrollAnotherPage() {
   const [modalShowSignin, setModalShowSignin] = React.useState(false);
   const [modalShowSignup, setModalShowSignup] = React.useState(false);
   
-  // const [navBackground, setNavBackground] = useState(false)
-  //   const navRef = useRef()
-  //   navRef.current = navBackground
-  //   useEffect(() => {
-  //     const handleScroll = () => {
-  //       const show = window.scrollY > 50
-  //       if (navRef.current !== show) {
-  //         setNavBackground(show)
-  //       }
-  //     }
-  //     document.addEventListener('scroll', handleScroll)
-  //     return () => {
-  //       document.removeEventListener('scroll', handleScroll)
-  //     }
-  //   }, [])
-
     const [userLogin, setUserlogin] = useState();
     useEffect(() => {
       {
@@ -47,6 +30,8 @@ function NavbarScrollAnotherPage() {
     const logout = async(e) => {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      localStorage.removeItem("user_id");
+      localStorage.removeItem("userID");
       window.location.reload(false);
     };
 
@@ -55,13 +40,21 @@ function NavbarScrollAnotherPage() {
       window.location.href ="/create";
     }
 
+    const createWarning =()=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Join us or Sign in before',
+      })
+    }
+
   if(!userLogin){
   return (
     <>
       {['sm'].map((expand) => (
         <Navbar className='bg-black' expand="sm" fixed="top">
           <Container fluid>
-            <Navbar.Brand href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
+            <Navbar.Brand href="/" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
             <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas className="bg-black"
               id={`offcanvasNavbar-expand-${expand}`}
@@ -88,6 +81,7 @@ function NavbarScrollAnotherPage() {
                   Sign in
                 </Button>
                 <ModalSignin show={modalShowSignin} onHide={() => setModalShowSignin(false)}/>
+                <Nav.Link className="p-2 text-white" href="#action2" onClick={createWarning}><CreateIcon/></Nav.Link>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
             
@@ -104,7 +98,7 @@ function NavbarScrollAnotherPage() {
         {['sm'].map((expand) => (
           <Navbar expand="sm" className='bg-black' fixed="top">
             <Container fluid>
-              <Navbar.Brand  href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
+              <Navbar.Brand  href="/" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
               <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
               <Navbar.Offcanvas className="bg-dark"
                 id={`offcanvasNavbar-expand-${expand}`}
