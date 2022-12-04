@@ -3,7 +3,6 @@ import '../Category/Category.css'
 import CardCategory from '../Category/CardCategory'
 import Load from '../Category/Loading';
 
-
 class Category extends React.Component {
     constructor(props) {
       super(props);
@@ -27,6 +26,7 @@ class Category extends React.Component {
           DataisLoaded: true
       }));
   }
+
   render(){
 
     const { DataisLoaded, categorys,subCategorys } = this.state;
@@ -46,7 +46,7 @@ class Category extends React.Component {
         }
       })}
     }
-    
+
     if (!DataisLoaded) 
     return <div><Load /></div> ;
 
@@ -54,7 +54,7 @@ class Category extends React.Component {
       
       <div className="category" id="category">
         <div className="header">
-          <div clasName="header-blog" >Discover your interesting</div>
+          <div className="header-blog" >Discover your interesting</div>
 
         <div className="body" style={{marginTop:'1rem'}}>
           <div className="category-menu">
@@ -65,17 +65,17 @@ class Category extends React.Component {
                     {data.name}
                   </div>
                   <div className="subcategory scrollCard" style={{display: 'flex'}}>
+                  
                     {arrSubcategory.map((item,id)=>
                     {       
-                            if(data.id===item.catagoriesID){
-                                return <li key={id}></li>,item,
-                                <div className="subcategory-detail" style={{fontSize: '1rem' ,fontWeight: 'lighter'}} key={id}>
-                                    <CardCategory id={item.id} urlPhoto={item.urlPhoto} sub_name={item.sub_name} description={item.description} />
-                                </div>
-                                
-                            }
+                      if(data.id===item.catagoriesID){
+                          return <li key={id}></li>,item,
+                          <div className="subcategory-detail" style={{fontSize: '1rem' ,fontWeight: 'lighter'}} key={id}>
+                              <CardCategory id={item.id} urlPhoto={item.urlPhoto} sub_name={item.sub_name} description={item.description} />
+                          </div>
                       }
-                    )}
+                    })
+                  }  
                   </div>
                 </div>
               </div>

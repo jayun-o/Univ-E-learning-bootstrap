@@ -75,7 +75,7 @@ export default function ModalSignup(props) {
           <Form.Control type="password" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
         <div className="text-end">
-          <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit">Sign up</Button>
         </div>
       </Form>
       </Modal.Body>

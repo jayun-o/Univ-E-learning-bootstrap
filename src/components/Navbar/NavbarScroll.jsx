@@ -11,11 +11,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import CreateIcon from './icon/CreateIcon';
 import logo from './icon/logo.png'
-
+import Swal from 'sweetalert2'
 
 function NavbarScroll() {
   const [modalShowSignin, setModalShowSignin] = React.useState(false);
   const [modalShowSignup, setModalShowSignup] = React.useState(false);
+
   
   const [navBackground, setNavBackground] = useState(false)
     const navRef = useRef()
@@ -40,11 +41,21 @@ function NavbarScroll() {
         setUserlogin(userString);
       }
     } );
+
+    const createWarning =()=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Join us or Sign in before',
+      })
+    }
   
     /////////// setting Logout //////////
     const logout = () => {
        localStorage.removeItem("user");
        localStorage.removeItem("token");
+       localStorage.removeItem("user_id");
+       localStorage.removeItem("userID");
        window.location.reload(false);
     };
   
@@ -58,7 +69,7 @@ function NavbarScroll() {
       {['sm'].map((expand) => (
         <Navbar expand="sm" fixed="top" style={{ transition: '1s ease',backgroundColor: navBackground ? 'black' : 'transparent'}}>
           <Container fluid>
-            <Navbar.Brand href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
+            <Navbar.Brand href="/" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
             <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas className="bg-dark"
               id={`offcanvasNavbar-expand-${expand}`}
@@ -85,6 +96,7 @@ function NavbarScroll() {
                   Sign in
                 </Button>
                 <ModalSignin show={modalShowSignin} onHide={() => setModalShowSignin(false)}/>
+                <Nav.Link className="p-2 text-white" href="#action2" onClick={createWarning}><CreateIcon/></Nav.Link>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
             
@@ -101,7 +113,7 @@ function NavbarScroll() {
         {['sm'].map((expand) => (
           <Navbar expand="sm" fixed="top" style={{ transition: '1s ease',backgroundColor: navBackground ? 'black' : 'transparent'}}>
             <Container fluid>
-              <Navbar.Brand  href="#" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
+              <Navbar.Brand  href="/" className="text-white"><img src={logo} style={{height:'46px',paddingLeft:'4rem'}}/></Navbar.Brand>
               <Navbar.Toggle className="bg-light" style={{opacity:'0.5'}} aria-controls={`offcanvasNavbar-expand-${expand}`} />
               <Navbar.Offcanvas className="bg-dark"
                 id={`offcanvasNavbar-expand-${expand}`}
