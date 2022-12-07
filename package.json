@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/styled": "^11.10.5",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.10.9",
@@ -24,8 +23,6 @@
     "bootstrap": "^5.2.2",
     "daisyui": "^2.33.0",
     "dayjs": "^1.11.6",
-    "flowbite": "^1.5.3",
-    "flowbite-react": "^0.3.4",
     "framer-motion": "^7.6.12",
     "html-react-parser": "^3.0.4",
     "lowlight": "^2.7.0",
