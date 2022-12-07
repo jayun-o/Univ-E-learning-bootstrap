@@ -8,11 +8,11 @@ import TimelineCourse from '../Timeline/TimelineCourse';
 function TabFilter() {
   return (
     <Tabs
-      defaultActiveKey="Blog"
+      defaultActiveKey="Post"
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="Blog" title="Blog">
+      <Tab eventKey="Post" title="Post">
         <TimelineBlog />
       </Tab>
       <Tab eventKey="Course" title="Course">

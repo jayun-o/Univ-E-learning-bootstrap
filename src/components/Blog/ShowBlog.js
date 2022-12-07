@@ -58,7 +58,7 @@ const ShowBlog = () => {
         .then(data => setPosts(data.data))
     },[])
 
-    // console.log(posts)
+    console.log(posts)
     
 
     /////////////// Display All Comments ///////////////////////////
@@ -74,6 +74,7 @@ const ShowBlog = () => {
       .then(response => response.json())
       .then(data => setComments(data.data))
     }
+    console.log(comments)
 
     useEffect(() => {
 
