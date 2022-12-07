@@ -81,3 +81,5 @@ npm install react-player
 npm install dayjs
 npm install @mui/material/styles
 npm install @mui/styles    
+npm install axios
+npm install sweetalert2
