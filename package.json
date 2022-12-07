@@ -23,7 +23,6 @@
     "bootstrap": "^5.2.2",
     "daisyui": "^2.33.0",
     "dayjs": "^1.11.6",
-    "framer-motion": "^7.6.12",
     "html-react-parser": "^3.0.4",
     "lowlight": "^2.7.0",
     "mdb-react-ui-kit": "^5.0.0",
