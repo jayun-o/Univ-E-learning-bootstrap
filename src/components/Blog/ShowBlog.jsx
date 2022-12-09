@@ -431,12 +431,12 @@ if(user_id!=posts.userID){
                         <button
                           onClick={loadMore}
                           type="button"
-                          className="btn btn-danger disabled"
+                          className="btn btn-dark disabled"
                         >
                           No more comments
                         </button>
                       ) : (
-                        <button onClick={loadMore} type="button" className="btn btn-danger">
+                        <button onClick={loadMore} type="button" className="btn btn-dark">
                           Load More Comment
                         </button>
                       )}
@@ -653,12 +653,12 @@ if(user_id==posts.userID){
                         <button
                           onClick={loadMore}
                           type="button"
-                          className="btn btn-danger disabled"
+                          className="btn btn-dark disabled"
                         >
                           No more comments
                         </button>
                       ) : (
-                        <button onClick={loadMore} type="button" className="btn btn-danger">
+                        <button onClick={loadMore} type="button" className="btn btn-dark">
                           Load More Comments
                         </button>
                       )}
