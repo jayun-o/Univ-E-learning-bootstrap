@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import '../Blog/ShowBlog.css';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -15,7 +15,8 @@ import Swal from "sweetalert2";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { Button } from 'react-bootstrap'
-import Spinner from 'react-bootstrap/Spinner';
+import { slice } from 'lodash'
+
 
 
 
@@ -37,28 +38,35 @@ const ShowBlog = () => {
     const { sub_name } = useParams();
     const navigate = useNavigate();
     const [userLogin, setUserlogin] = useState();
-    // const {DataisLoaded} = useState(true);
+    
+    var relativeTime = require('dayjs/plugin/relativeTime')
+    dayjs.extend(relativeTime)
 
-
-    const str = (posts.hastag || ',')
-    const arrayHashtag = typeof str === 'object' ? str : str.split(',');
-    // console.log(arrayHashtag); '
-
+    //////// Count number of comment/////////////////////////
     const countComment = (comments.all_comment || []).length;
-    // console.log(countComment)
+    const [isCompleted, setIsCompleted] = useState(false);
+    const commentsFirst = 5;
+    const [index, setIndex] = useState(commentsFirst);
+  
+    const loadMore = () => {
+      setIndex(index + commentsFirst)
+      console.log(index)
+      if (index >= countComment) {
+        setIsCompleted(true)
+      } else {
+        setIsCompleted(false)
+      }
+    }
+    
+    const initialComments = slice(comments.all_comment || [], 0, index)
+    
+    // const str = (posts.hastag || ',')
+    // const arrayHashtag = typeof str === 'object' ? str : str.split(',');
 
     ///// Sort commenst to show the newest comments on top ///////
-    const listComments = (comments.all_comment || [])
-    // const list = (comments.all_comment || [])
-    listComments.sort((a, b) => (a.id > b.id) ? -1 : 1)
+    // initialComments.sort((a, b) => (a.id > b.id) ? -1 : 1)
 
-    // const listAscending = (comments.all_comment || [])
-    // listAscending.sort((a, b) => (a.id < b.id) ? 1 : -1)
-    // console.log(list) sortedProducts.sort((a, b) => {
-
-
-
-    
+    ///////Style Rating Score Comment////////////
     const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
       
@@ -106,9 +114,8 @@ const ShowBlog = () => {
 
     },[updateStat])
 
-  
+  ////////// Create Comment Post ///////////////////////
   const CreateComment = () => {
-    // const userLogin = localStorage.getItem("token")
     if(!userLogin){
       Swal.fire({
       icon: 'error',
@@ -117,11 +124,19 @@ const ShowBlog = () => {
     })
     }
     if(userLogin){
+      if (textComment.trim().length !== 0 && score.trim().length !== 0) {
+        Swal.fire({
+          icon: 'success',
+          // title: 'Success',
+          text: 'Your comment was added successfully'
+      })
+    }  else {
       Swal.fire({
-        icon: 'success',
-        // title: 'Success',
-        text: 'Your comment was added successfully'
-    })
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please leave comment and score before.',
+     })
+    }
     return fetch("https://univelear.herokuapp.com/api/comment/create", {
       method: "POST",
       headers: {
@@ -135,8 +150,9 @@ const ShowBlog = () => {
       .then(FetchComment())
       .then((data) => setUpdateStat(data.data))
       .then((data) => console.log(data))
-     }
-    }
+
+     } 
+  }
 
   ////////Delete Post////////////////////
   const deletePost = async (id) => {
@@ -165,7 +181,7 @@ const ShowBlog = () => {
     .then(({data}) => {
         Swal.fire({
             icon: 'success',
-            text: data.message
+            text: "Your post was deleted successfully."
         })
         navigate(-1)
         FetchComment()
@@ -178,7 +194,7 @@ const ShowBlog = () => {
 }
   
 
-////////////Delete Comment////////////////
+////////////Delete Comment Post ////////////////
 
 const deleteComment = async (id) => {
   const isConfirm = await Swal.fire({
@@ -206,7 +222,8 @@ const deleteComment = async (id) => {
   .then(({data}) => {
       Swal.fire({
           icon: 'success',
-          text: data.message
+          // text: data.message
+          text: "Your comment was deleted successfully."
       })
       FetchComment()
   }).catch(({response:{data}}) => {
@@ -217,8 +234,6 @@ const deleteComment = async (id) => {
   })
 }
 
-  var relativeTime = require('dayjs/plugin/relativeTime')
-  dayjs.extend(relativeTime)
 
 
 if(user_id!=posts.userID){
@@ -312,7 +327,7 @@ if(user_id!=posts.userID){
                         
                     </div>
                     
-                    {listComments.map((data)=>{
+                    {initialComments.map((data)=>{
 
                     if(!userLogin){
                         return {data},
@@ -343,7 +358,7 @@ if(user_id!=posts.userID){
                       <span><small class="font-weight-bold">{data.description}</small></span>
 
                     </div>
-                      }
+                    }
 
                       if(data.userID != user_id){
                         return {data},
@@ -408,6 +423,21 @@ if(user_id!=posts.userID){
                       }
                       }
                     )}
+                    <div className="d-grid mt-3 mb-5">
+                      {isCompleted ? (
+                        <button
+                          onClick={loadMore}
+                          type="button"
+                          className="btn btn-danger disabled"
+                        >
+                          No more comments
+                        </button>
+                      ) : (
+                        <button onClick={loadMore} type="button" className="btn btn-danger">
+                          Load More Comment
+                        </button>
+                      )}
+                    </div>
                 
                 </div>
               </div>
@@ -517,7 +547,7 @@ if(user_id==posts.userID){
                       <h6>All Comments({countComment})</h6>
                   </div>
                   
-                  {listComments.map((data)=>{
+                {initialComments.map((data)=>{
 
                   if(!userLogin){
                       return {data},
@@ -614,6 +644,22 @@ if(user_id==posts.userID){
                     }
                     }
                   )}
+                  <div className="d-grid mt-3 mb-5">
+                      {isCompleted ? (
+                        <button
+                          onClick={loadMore}
+                          type="button"
+                          className="btn btn-danger disabled"
+                        >
+                          No more comments
+                        </button>
+                      ) : (
+                        <button onClick={loadMore} type="button" className="btn btn-danger">
+                          Load More Comments
+                        </button>
+                      )}
+                    </div>
+                  
               
               </div>
             </div>
