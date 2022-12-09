@@ -59,7 +59,9 @@ const ShowBlog = () => {
     }
     
     const initialComments = slice(comments.all_comment || [], 0, index)
-    
+
+
+
     // const str = (posts.hastag || ',')
     // const arrayHashtag = typeof str === 'object' ? str : str.split(',');
 
@@ -294,10 +296,11 @@ if(user_id!=posts.userID){
                 </Box>
                 
                 <input
+                type="text"
                 element="textarea"
                 className="form-control"
                 placeholder="  Leave a comment here"
-                defaultValue={textComment}
+                value={textComment}
                 onChange={(e) => setTextComment(e.target.value)}
                 />
 
@@ -438,6 +441,7 @@ if(user_id!=posts.userID){
                         </button>
                       )}
                     </div>
+                    
                 
                 </div>
               </div>
@@ -659,6 +663,7 @@ if(user_id==posts.userID){
                         </button>
                       )}
                     </div>
+
                   
               
               </div>
