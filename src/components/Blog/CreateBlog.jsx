@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 
 const CreateBlog = () => {
   const navigate = useNavigate();
@@ -197,5 +198,27 @@ const CreateBlog = () => {
     </Form>
   );
 };
+      <Form.Label style={{color:'#37a6fb'}}>What would you like to share?</Form.Label>
+      <Tiptap setBody={setBody} onChange={(e) => {setBody(body)}}/>
+
+      {console.log(selected.label)}
+      <div className="text-end">
+        <Link to={{ pathname:`/Timeline/${selected.label}/Post`}}>
+          <button type="submit" variant="primary" className='mb-3' >Create</button>
+        </Link>
+      </div>
+      
+      {/* Preview Phase */}
+      <div className="ProseMirror">
+        <div className='preview' style={{padding:'50', margin:'50',fontSize:'30px'}}>Preview Phase</div>
+        <h1>{title}</h1>
+        {/* <p>{selected}</p> */}
+        <img src={image} height="300"/>
+        {parser(body)}
+      </div>
+    </div>
+  </Form>
+  )
+}
 
 export default CreateBlog;

@@ -54,7 +54,7 @@ class Category extends React.Component {
       
       <div className="category" id="category">
         <div className="header">
-          <div className="header-blog" >Discover your interesting</div>
+          <div className="text-center text-white" >Discover your interesting</div>
 
         <div className="body" style={{marginTop:'1rem'}}>
           <div className="category-menu">

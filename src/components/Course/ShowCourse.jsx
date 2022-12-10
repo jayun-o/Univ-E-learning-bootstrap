@@ -16,6 +16,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import parser from "html-react-parser";
 import {useNavigate} from 'react-router-dom';
+import { slice } from 'lodash'
+import Badge from 'react-bootstrap/Badge';
 
 
 const ShowCourse = () => {
@@ -36,6 +38,27 @@ const ShowCourse = () => {
   const navigate = useNavigate();
   const [userLogin, setUserlogin] = useState();
   const [show, setShow] = useState(false);
+
+  var relativeTime = require('dayjs/plugin/relativeTime')
+  dayjs.extend(relativeTime)
+
+
+ //////// Count number of comment/////////////////////////
+ const [isCompleted, setIsCompleted] = useState(false);
+ const commentsFirst = 5;
+ const [index, setIndex] = useState(commentsFirst);
+
+ const loadMore = () => {
+   setIndex(index + commentsFirst)
+   console.log(index)
+   if (index >= countComment) {
+     setIsCompleted(true)
+   } else {
+     setIsCompleted(false)
+   }
+ }
+ 
+ const initialComments = slice(comments.all_comment || [], 0, index)
 
 
   const StyledRating = styled(Rating)({
@@ -137,22 +160,36 @@ const ShowCourse = () => {
       })
       }
       if(userLogin){
-        return fetch("https://univelear.herokuapp.com/api/comment/create/course", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({couresID: couresID, description: textComment, score: score}),
+        if (textComment.trim().length !== 0 && score.trim().length !== 0) {
+          Swal.fire({
+            icon: 'success',
+            // title: 'Success',
+            text: 'Your comment was added successfully'
         })
-          .then((data) => data.json())
-          .then(FetchComment())
-          .then((data) => setUpdateStat(data.data))
-          .then((data) => console.log(data))
+      }  else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please leave comment and score before.',
+       })
       }
+      return fetch("https://univelear.herokuapp.com/api/comment/create/course", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({couresID: couresID, description: textComment, score: score}),
+      })
+        .then((data) => data.json())
+        .then(FetchComment())
+        .then((data) => setUpdateStat(data.data))
+        .then((data) => console.log(data))
+  
+       } 
     }
-
+  
   // console.log(video);
   
   console.warn = () => {};
@@ -202,7 +239,7 @@ function introStart(){
 
 // {console.log(user_id)}
 // {console.log(course)}
-console.log(video)
+// console.log(video)
 
 if(user_id!=course.userID){
   return (
@@ -211,20 +248,20 @@ if(user_id!=course.userID){
         <NavbarScrollAnotherPage/>
       </div><hr/><hr/><br/>
       
-      <div className="p-4 mb-4 text-bg-dark rounded-3" style={{ backgroundImage:`url(${course.image})` }}>
+      <div className="p-4 mb-4 rounded-3" style={{ backgroundImage:`url(${course.image})` }}>
         <div className="py-4 container-fluid">
-          <h1 className="display-5 fw-bold text-uppercase">{course.title}</h1>
+          <h1 className="text-primary display-5 fw-bold text-uppercase">{course.title}</h1>
           <div className="col-md-8 fs-4" style={{display:'flex'}}>
-            <div className='align-self-center'><BsPersonCircle/></div>
-            <div className='text-white'>&nbsp;{course.nameCreate}</div>
+            <div className='text-primary align-self-center'><BsPersonCircle/></div>
+            <div className='text-primary'>&nbsp;{course.nameCreate}</div>
           </div>
           <div className="pt-3 col-md-8 fs-6" style={{display:'flex'}}>
-            <div className='align-self-center'><BsCalendarCheck/></div>
-            <div className='text-white'>&nbsp;launch date {course.created_at}</div>
+            <div className='text-primary align-self-center'><BsCalendarCheck/></div>
+            <div className='text-primary'>&nbsp;launch date {course.created_at}</div>
           </div>
           <br/>
           {/* {...setTimeout(()=>introStart(),1000)}*/}
-          <Button id="introstart" className="border-white btn btn-lg" variant="outline-light" type="button" onClick={()=>introStart() }>Start watching</Button >
+          <Button id="introstart" className="border-primary btn btn-lg" variant="outline-primary" type="button" onClick={()=>introStart() }>Start watching</Button >
         </div>
       </div>
       
@@ -283,7 +320,7 @@ if(user_id!=course.userID){
         <div className="py-4 container-fluid">
           <h4 className="text-black">All Comments ({countComment})</h4>
           <div className='scroll' style={{overflow:"auto", width:"auto", height:"800px", overflowX:'hidden'}}>
-          {list.map((data)=>{
+          {initialComments.map((data)=>{
             // return data,
               if(!userLogin){
                 return data,
@@ -291,7 +328,7 @@ if(user_id!=course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -315,7 +352,7 @@ if(user_id!=course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -339,7 +376,7 @@ if(user_id!=course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -361,6 +398,21 @@ if(user_id!=course.userID){
               </div>
               } 
           })}
+            <div className="mt-3 mb-5 d-grid">
+              {isCompleted ? (
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  className="btn btn-dark disabled"
+                >
+                  No more comments
+                </button>
+              ) : (
+                <button onClick={loadMore} type="button" className="btn btn-dark">
+                  Load More Comment
+                </button>
+              )}
+            </div>
           </div>
         </div> 
       </div>
@@ -377,20 +429,20 @@ if(user_id==course.userID){
         <NavbarScrollAnotherPage/>
       </div><hr/><hr/><br/>
       
-      <div className="p-4 mb-4 text-bg-dark rounded-3" style={{ backgroundImage:`url(${course.image})` }}>
+      <div className="p-4 mb-4 text-primary rounded-3" style={{ backgroundImage:`url(${course.image})` }}>
         <div className="py-4 container-fluid">
           <h1 className="display-5 fw-bold text-uppercase">{course.title}</h1>
           <div className="col-md-8 fs-4" style={{display:'flex'}}>
-            <div className='align-self-center'><BsPersonCircle/></div>
-            <div className='text-white'>&nbsp;{course.nameCreate}</div>
+            <div className='text-primary align-self-center'><BsPersonCircle/></div>
+            <div className=''>&nbsp;{course.nameCreate}</div>
           </div>
           <div className="pt-3 col-md-8 fs-6" style={{display:'flex'}}>
-            <div className='align-self-center'><BsCalendarCheck/></div>
-            <div className='text-white '>&nbsp;launch date {course.created_at}</div>
+            <div className='text-primary align-self-center'><BsCalendarCheck/></div>
+            <div className=''>&nbsp;launch date {course.created_at}</div>
           </div>
           <br/>
           <div className='button-course'style={{display:'flex'}}>
-          <Button id="introstart" className="border-white btn btn-lg" variant="outline-light" type="button" onClick={()=>introStart()}>Start watching</Button >
+          <Button id="introstart" className="border-primary btn btn-lg" variant="outline-primary" type="button" onClick={()=>introStart()}>Start watching</Button >
             &nbsp;&nbsp;<Button variant='danger' onClick={() => deleteCourse(course.id)}>Delete course</Button>
           </div>
           
@@ -451,7 +503,7 @@ if(user_id==course.userID){
         <div className="py-4 container-fluid">
           <h4 className="text-black">All Comments ({countComment})</h4>
           <div className='scroll' style={{overflow:"auto", width:"auto", height:"800px", overflowX:'hidden'}}>
-          {list.map((data)=>{
+          {initialComments.map((data)=>{
             // return data,
               if(!userLogin){
                 return data,
@@ -459,7 +511,7 @@ if(user_id==course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -483,7 +535,7 @@ if(user_id==course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -507,7 +559,7 @@ if(user_id==course.userID){
                 <div className="ml-5 col-md-8" style={{display:'flex'}}>
                   <div className='align-self-center'><BsPersonCircle/></div>
                   <div className='text-black fs-4'>&nbsp;{data.nameCreate}</div>
-                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).format("MMM D, YYYY h:mm A")}</div>
+                  <div className='text-gray' style={{paddingLeft:'50px'}}>{dayjs(data.created_at).fromNow()}</div>
                 </div>
                 
                 <div className="py-1 container-fluid" style={{marginLeft:'1rem'}}>{parser(data.description)}</div>
@@ -529,6 +581,21 @@ if(user_id==course.userID){
               </div>
               } 
           })}
+          <div className="mt-3 mb-5 d-grid">
+              {isCompleted ? (
+                <button
+                  onClick={loadMore}
+                  type="button"
+                  className="btn btn-dark disabled"
+                >
+                  No more comments
+                </button>
+              ) : (
+                <button onClick={loadMore} type="button" className="btn btn-dark">
+                  Load More Comment
+                </button>
+              )}
+            </div>
           </div>
         </div> 
       </div>
