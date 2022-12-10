@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Select from 'react-select'
 import swal from "sweetalert";
 import Swal from "sweetalert2";
-import { Link, useParams } from 'react-router-dom';
 
 const CreateBlog = () => {
   //get name
@@ -160,12 +159,15 @@ const CreateBlog = () => {
       </div>
       <Form.Label style={{color:'#37a6fb'}}>What would you like to share?</Form.Label>
       <Tiptap setBody={setBody} onChange={(e) => {setBody(body)}}/>
-
-      {console.log(selected.label)}
+      
       <div className="text-end">
-        <Link to={{ pathname:`/Timeline/${selected.label}/Post`}}>
-          <button type="submit" variant="primary" className='mb-3' >Create</button>
-        </Link>
+        <Button 
+        variant="primary" 
+        type='submit' 
+        className='mb-3' 
+        style={{margin:'0.5rem', marginLeft:'1rem'}}>
+          Create
+        </Button>
       </div>
       
       {/* Preview Phase */}
