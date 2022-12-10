@@ -93,22 +93,6 @@ const CreateBlog = () => {
       hastag: select_label,
       image,
     });
-    // RESPONSE SUBMIT
-    // if (response.success) {
-    //   swal("Success", response.message, "successfully.", {
-    //     buttons: false,
-    //     icon: "success",
-    //     timer: 2000,
-    //   });
-    //   localStorage.setItem("blog_id", response.data.id);
-    //   window.location.href = `/Timeline/${selected.label}/Post/${response.data.id}`;
-    // } else {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Failed...",
-    //     text: "Please provide complete information",
-    //   });
-    // }
     if (response.success) {
       const { value: accept } = await Swal.fire({
         icon: "success",
