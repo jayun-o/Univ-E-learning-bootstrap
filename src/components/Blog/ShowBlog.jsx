@@ -15,7 +15,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { Button } from 'react-bootstrap'
 import { slice } from 'lodash'
-// import profile from '../Blog/profile.png';
+import profile from '../Blog/profile.png';
 // import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
@@ -243,7 +243,7 @@ if(user_id!=posts.userID){
 
 
           <div className='blog-author-detail'>
-          {/* <img src={profile} class="rounded-circle" alt="profile" /> */}
+          <img src={profile} class="rounded-circle" alt="profile" />
           <div className='author-user-name'>{posts.nameCreate}</div>
           </div>
           <div className='blog-subCategory'>
@@ -292,13 +292,6 @@ if(user_id!=posts.userID){
                 value={textComment}
                 onChange={(e) => setTextComment(e.target.value)}
                 />
-{/* 
-                <button 
-                  type="submit"
-                  className='submit-comment'
-                  onClick={CreateComment}
-                > Comment
-                </button> */}
                 <Button className='btn btn-sm submit-comment' type="submit" variant='dark' onClick={CreateComment}>Comment</Button>
               </div>
             </div>     
@@ -409,7 +402,7 @@ if(user_id!=posts.userID){
                         <span><small class="font-weight-bold">{data.description}</small></span>
                         <div class="d-flex align-items-end flex-column">
                           <div class="mt-auto p-2">
-                            <Button variant='danger' onClick={() => deleteComment(data.id)}>Delete</Button>
+                            <Button className="btn btn-sm" variant='danger' onClick={() => deleteComment(data.id)}>Delete</Button>
                           </div>
                         </div>
                       </div>
@@ -512,12 +505,6 @@ if(user_id==posts.userID){
               onChange={(e) => setTextComment(e.target.value)}
               />
 
-              {/* <button 
-                type="submit"
-                className='submit-comment'
-                onClick={CreateComment}
-              > Comment
-              </button> */}
               <Button className='btn btn-sm submit-comment' type="submit" variant='dark' onClick={CreateComment}>Comment</Button>
             </div>
           </div>     
@@ -621,7 +608,7 @@ if(user_id==posts.userID){
                       <span><small class="font-weight-bold">{data.description}</small></span>
                         <div class="d-flex align-items-end flex-column">
                           <div class="mt-auto p-2">
-                            <Button variant='danger' onClick={() => deleteComment(data.id)}>Delete</Button>
+                            <Button className="btn btn-sm" variant='danger' onClick={() => deleteComment(data.id)}>Delete</Button>
                           </div>
                         </div>
 
