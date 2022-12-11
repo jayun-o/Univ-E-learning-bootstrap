@@ -292,13 +292,14 @@ if(user_id!=posts.userID){
                 value={textComment}
                 onChange={(e) => setTextComment(e.target.value)}
                 />
-
+{/* 
                 <button 
                   type="submit"
                   className='submit-comment'
                   onClick={CreateComment}
-                > review
-                </button>
+                > Comment
+                </button> */}
+                <Button className='btn btn-sm submit-comment' type="submit" variant='dark' onClick={CreateComment}>Comment</Button>
               </div>
             </div>     
           </div>
@@ -510,13 +511,14 @@ if(user_id==posts.userID){
               defaultValue={textComment}
               onChange={(e) => setTextComment(e.target.value)}
               />
-
+{/* 
               <button 
                 type="submit"
                 className='submit-comment'
                 onClick={CreateComment}
-              > review
-              </button>
+              > Comment
+              </button> */}
+              <Button className='btn btn-sm submit-comment' type="submit" variant='dark' onClick={CreateComment}>Comment</Button>
             </div>
           </div>     
         </div>

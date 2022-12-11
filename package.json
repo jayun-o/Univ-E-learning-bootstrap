@@ -23,6 +23,7 @@
     "@tiptap/extension-youtube": "^2.0.0-beta.199",
     "@tiptap/react": "^2.0.0-beta.199",
     "@tiptap/starter-kit": "^2.0.0-beta.199",
+    "axios": "^1.2.1",
     "bootstrap": "^5.2.2",
     "daisyui": "^2.33.0",
     "dayjs": "^1.11.6",
@@ -30,6 +31,7 @@
     "flowbite-react": "^0.3.4",
     "html-react-parser": "^3.0.4",
     "lowlight": "^2.7.0",
+    "mdb-react-ui-kit": "^5.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-debounce-input": "^3.3.0",
@@ -45,6 +47,7 @@
     "react-textarea-autosize": "^8.3.4",
     "styled-components": "^5.3.6",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.6.15",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
