@@ -97,20 +97,17 @@
       align-items: center;
       margin-bottom: 1rem;
     }
-  
-  .post-img-blog {
-    width: 100%;
-    height: auto;
-    text-align: center;
-    /* object-fit: cover; */
-  }
-    /* .author-user-img {
+    .rounded-circle {
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    } */
+      margin-right: 0.8rem;
+    }
   
+  .post-img-blog {
+    width:900px;
+    height: auto;
+  }
+
     .author-user-name {
       font-size: 20px;
       font-weight: 500;

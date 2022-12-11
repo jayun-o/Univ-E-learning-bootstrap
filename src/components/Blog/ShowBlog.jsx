@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-// import Divider from '@mui/material/Divider';
 import '../Blog/ShowBlog.css';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -16,8 +15,8 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { Button } from 'react-bootstrap'
 import { slice } from 'lodash'
-
-
+// import profile from '../Blog/profile.png';
+// import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
 const ShowBlog = () => {
@@ -38,6 +37,7 @@ const ShowBlog = () => {
     var relativeTime = require('dayjs/plugin/relativeTime')
     dayjs.extend(relativeTime)
 
+
     //////// Count number of comment/////////////////////////
     const countComment = (comments.all_comment || []).length;
     const [isCompleted, setIsCompleted] = useState(false);
@@ -53,12 +53,11 @@ const ShowBlog = () => {
         setIsCompleted(false)
       }
     }
-    
+
+    ///// loadmore and Sort commenst to show the newest comments on top ///////
     const initialComments = slice(comments.all_comment || [], 0, index);
     initialComments.sort((a, b) => (a.id > b.id) ? -1 : 1);
 
-    ///// Sort commenst to show the newest comments on top ///////
-    // initialComments.sort((a, b) => (a.id > b.id) ? -1 : 1)
 
     ///////Style Rating Score Comment////////////
     const StyledRating = styled(Rating)({
@@ -241,7 +240,10 @@ if(user_id!=posts.userID){
           <p className='blog-title'>{posts.title}</p>
           </header>
           <br></br>
+
+
           <div className='blog-author-detail'>
+          {/* <img src={profile} class="rounded-circle" alt="profile" /> */}
           <div className='author-user-name'>{posts.nameCreate}</div>
           </div>
           <div className='blog-subCategory'>
@@ -250,10 +252,8 @@ if(user_id!=posts.userID){
             </p>
             
           </div>
-         <div class="row  d-flex justify-content-center"> 
-          <div className='post-img-blog'>
-            <img src={posts.image} alt='cover img' />
-          </div>
+          <div class="row  d-flex justify-content-center">
+            <img src={posts.image} alt="cover image" />
           </div>
 
           <div className='blog-body'>
@@ -328,7 +328,7 @@ if(user_id!=posts.userID){
                       <div class="d-flex justify-content-between align-items-center">
 
                         <div class="user d-flex flex-row align-items-center">
-                          <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
+                          <span><small class="font-weight-bold text-primary">{data.nameCreate}</small></span>
                           <span>
                             <Box >
                               <StyledRating
@@ -387,7 +387,7 @@ if(user_id!=posts.userID){
                         <div class="d-flex justify-content-between align-items-center">
   
                           <div class="user d-flex flex-row align-items-center">
-                            <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
+                            <span><small class="font-weight-bold text-primary">{data.nameCreate}</small></span>
                             <span>
                               <Box >
                                 <StyledRating
@@ -450,11 +450,13 @@ if(user_id==posts.userID){
 
   return (
     <div class='container-xxl'>
-        <div className='navbar-timeline'>
-          <NavbarScrollAnotherPage/>
-        </div>
+      <div className='navbar-timeline'>
+        <NavbarScrollAnotherPage/>
+      </div>
+
+      {/* Post Content */}
       <div class='container-xl'>
-        {/* Post Content */}
+
         <header>
         <div class="d-flex flex-row-reverse">
           <div class="p-2"><Button variant='danger' onClick={() => deletePost(posts.id)}>Delete Post</Button></div>
@@ -464,26 +466,17 @@ if(user_id==posts.userID){
         <p className='blog-date'>Published {posts.created_at}</p>
         <p className='blog-title'>{posts.title}</p>
         </header>
-        {/* <div class="d-flex flex-column">
-          <div class="p-2">
-            <Button variant='danger' onClick={() => deletePost(posts.id)}>Delete Post</Button>
-          </div>
-          <div class="p-2">Published {posts.created_at}</div>
-          <div class="p-2">{posts.title}</div>
-        </div>
-        <br></br> */}
 
         <div className='blog-author-detail'>
-        <div className='author-user-name'>{posts.nameCreate}</div>
+          <div className='author-user-name'>{posts.nameCreate}</div>
         </div>
 
         <div className='blog-subCategory'>
           <p><div className='hastag-post'>#{sub_name}</div></p>
         </div>
-        <div class="row  d-flex justify-content-center"> 
-          <div className='post-img-blog'>
-            <img src={posts.image} alt='cover img' />
-          </div>
+ 
+        <div class="row  d-flex justify-content-center">
+          <img src={posts.image} alt="cover image" />
         </div>
 
         <div className='blog-body'>{parse(htmlString)}</div>
@@ -510,7 +503,6 @@ if(user_id==posts.userID){
               />
               </Box>
               
-
               <input
               element="textarea"
               className="form-control"
@@ -535,40 +527,38 @@ if(user_id==posts.userID){
       {/* Comment List */}
       
       <div class="container mt-5">
-          <div class="row d-flex justify-content-center">
-              <div class="col">
+        <div class="row d-flex justify-content-center">
+          <div class="col">
 
-                  <div class="headings d-flex justify-content-between align-items-center mb-3">
-                      <h6>All Comments ( {countComment} )</h6>
-                  </div>
+            <div class="headings d-flex justify-content-between align-items-center mb-3">
+              <h6>All Comments ( {countComment} )</h6>
+            </div>
                   
-                {initialComments.map((data)=>{
+            {initialComments.map((data)=>{
 
-                  if(!userLogin){
-                      return {data},
+            if(!userLogin){
+              return {data},
 
-                  <div class="card p-3 w-100">
-                    <div class="d-flex justify-content-between align-items-center">
+              <div class="card p-3 w-100">
+                <div class="d-flex justify-content-between align-items-center">
 
-                      <div class="user d-flex flex-row align-items-center">
-                        <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
-                        <span>
-                          <Box >
-                            <StyledRating
-                              className='rating-score'
-                              value={data.score}
-                              precision={0.5}
-                              // edit={false}
-                              disabled={true} 
-                              count={5}
-                              icon={<FavoriteIcon fontSize="inherit" />}
-                              emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                  <div class="user d-flex flex-row align-items-center">
+                    <span><small class="font-weight-bold text-primary">{data.nameCreate}</small></span>
+                      <span>
+                        <Box >
+                          <StyledRating
+                            className='rating-score'
+                            value={data.score}
+                            precision={0.5}
+                            disabled={true} 
+                            count={5}
+                            icon={<FavoriteIcon fontSize="inherit" />}
+                            emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                             />
-                          </Box>
-                        </span>
-                    </div>
+                        </Box>
+                      </span>
+                  </div>
                     <small>{dayjs(data.created_at).fromNow()}</small>
-
                     </div>
                     <span><small class="font-weight-bold">{data.description}</small></span>
 
@@ -576,12 +566,11 @@ if(user_id==posts.userID){
                     }
 
                     if(data.userID != user_id){
-                      return {data},
-                      <div class="card p-3 w-100">
+                    return {data},
+                    <div class="card p-3 w-100">
                       <div class="d-flex justify-content-between align-items-center">
-
                         <div class="user d-flex flex-row align-items-center">
-                          <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
+                          <span><small class="font-weight-bold text-primary">{data.nameCreate}</small></span>
                           <span>
                             <Box >
                               <StyledRating
@@ -596,13 +585,12 @@ if(user_id==posts.userID){
                               />
                             </Box>
                           </span>
+                        </div>
+                        <small>{dayjs(data.created_at).fromNow()}</small>
                       </div>
-                      <small>{dayjs(data.created_at).fromNow()}</small>
-
-                      </div>
-                      <span><small class="font-weight-bold">{data.description}</small></span>
-
+                        <span><small class="font-weight-bold">{data.description}</small></span>
                     </div>
+
                     }
                     if(data.userID == user_id){
                       return {data},
@@ -610,7 +598,7 @@ if(user_id==posts.userID){
                       <div class="d-flex justify-content-between align-items-center">
 
                         <div class="user d-flex flex-row align-items-center">
-                          <span><small class="font-weight-bold text-primary">{data.nameCreate} </small></span>
+                          <span><small class="font-weight-bold text-primary">{data.nameCreate}</small></span>
                           <span>
                             <Box >
                               <StyledRating
@@ -654,9 +642,6 @@ if(user_id==posts.userID){
                         </button>
                       )}
                     </div>
-
-                  
-              
               </div>
             </div>
           </div>
