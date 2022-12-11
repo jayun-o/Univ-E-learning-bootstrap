@@ -144,8 +144,6 @@
   
   
   button {
-    /* display: flex;
-    position: relative; */
     font-size: 14px;
     text-align: center;
     padding: 4px 10px;
@@ -153,8 +151,7 @@
     border: 1px solid #000;
     color: #000;
     background-color: #fff;
-    
-    
+
   }
   
   
@@ -162,100 +159,6 @@
     color: #fff;
     background-color: #000;
   }
-  
-/*   
-  .titile-comment {
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
-  }
-  
-  
-  .all-Comment-list {
-    display: block;
-    position: relative;
-    left: 0;
-    max-width: 100%;
-    max-height: 70%;
-  
-    
-  } 
-  
-  .comment-section{
-    max-height: 50vh;
-    max-width: 100%;
-    background-color: #fff;
-    overflow-y:auto;
-    border:1px solid #ccc
-  } */
-  
-  /* Scrollbar styles */
-  /* ::-webkit-scrollbarComment {
-    width: 12px;
-    height: 12px;
-    } */
-    
-    /* ::-webkit-scrollbar-track {
-    border: 1px solid #d0d2d3;
-    border-radius: 0;
-    
-    } */
-  
-    /* ::-webkit-scrollbar-thumb {
-      background: #d0d2d3;  
-      border-radius: 0px;
-      } */
-  
-    /* ::-webkit-scrollbar-thumb:hover {
-      background: #d0d2d3;  
-      } */
-  
-  /* .cardComment {
-      
-    border: none;
-    text-align: left;
-    box-shadow: 5px 6px 6px 2px #e9ecef;
-    border-radius: 4px;
-    max-width: 900px
-  } */
-  
-  
-  /* .dots{
-  
-  height: 4px;
-  width: 4px;
-  margin-bottom: 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  }
-  
-  .badge{
-  
-    padding: 7px;
-    padding-right: 9px;
-    padding-left: 16px;
-    box-shadow: 5px 6px 6px 2px #e9ecef;
-    margin-top: 1rem;
-  } */
-  
-  
-  
-  /* .comment-date {
-    margin-left: 10px;
-    font-size: 10px;
-  }
-  
-  .user-img {
-    margin-top: 4px;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-  }
-   .user-detail {
-    display: flex;
-    align-items: center;
-   } */
   
   
   

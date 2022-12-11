@@ -511,8 +511,8 @@ if(user_id==posts.userID){
               defaultValue={textComment}
               onChange={(e) => setTextComment(e.target.value)}
               />
-{/* 
-              <button 
+
+              {/* <button 
                 type="submit"
                 className='submit-comment'
                 onClick={CreateComment}
